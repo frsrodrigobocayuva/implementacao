@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="text-align: center;">
+    <h1>criar pitbull</h1>
+    <form action="{{ url_for('hello.novo_usuario') }}" method="POST">
+        <label for="nome">Username:</label>
+        <input type="text" id="nome" name="nome" required>
+        <button style="background-color: #e4e4ec; border-radius: 5px; border-style: none;" type="submit">Criar</button>
+    </form>
+    <ul>
+        {% for usuario in usuarios %}
+            <li style="display: flex; gap: 15px; justify-content: center; align-items: center;">
+                <form action="{{ url_for('hello.editar_usuario', usuario_id=usuario.id) }}" method="POST">
+                    <input type="text" name="novo_usuario" value="{{ usuario.username }}" placeholder="editar" required>
+                    <button style="background-color: #e4e4ec; border-radius: 5px; border-style: none;" type="submit">Salvar</button>
+                </form>
+
+                <form action="{{ url_for('hello.deletar_usuario', usuario_id=usuario.id) }}" method="POST" style="display: inline;">
+                    <button style="background-color: #e4e4ec; border-radius: 5px; border-style: none;" type="submit">Deletar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <img src="https://scontent-poa1-1.xx.fbcdn.net/v/t1.6435-9/135661242_3841417772571120_6666946871434046678_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=JXsuc_FHfKsQ7kNvwEGhD1A&_nc_oc=Admie_m7ZVB4E6oh4fy6zwtnYUXPSfmH6Gr6sr5jctnPrPHtBef1CvkvYnw6v2ZM9Gg&_nc_zt=23&_nc_ht=scontent-poa1-1.xx&_nc_gid=ugJ-vJwSFc5ZT5142Mnb1A&oh=00_AfZNYmz0m6b89jrqhJs_6gTyQeUNjcOXDQ_jwnGXpLT47A&oe=68E6CBDB" style="border-radius: 15px; box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);" >
+    </body>
+</html>
